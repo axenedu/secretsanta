@@ -1,0 +1,6 @@
+1:Ramiro:Serrano Luque:info@ficticio.es:2,5
+2:Rocío:Serrano Sánchez:info2@ficticio.es:1,4
+3:Conchi:Perea Soto:info3@ficticio.es:4,6
+4:Pablo:Rubio Prieto:info4@ficticio.es:3,1
+5:María José:Lebra Sánchez:info5@ficticio.es:6,2
+6:Bernardo:Escoresca:info6@ficticio.es:5,3

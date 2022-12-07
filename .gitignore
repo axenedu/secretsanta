@@ -1,0 +1,7 @@
+.env
+
+assets/.*
+
+token.json
+
+.idea
