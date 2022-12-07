@@ -46,6 +46,8 @@ if __name__ == '__main__':
     logging.info("Realizando Sorteo")
     assignments = raffleAssignments(participants)
     logging.info("Comunicando resultados")
+    for participant, friend in assignments.items():
+        logging.info('Enviando carta para {}'.format(participant))
 
 
 

@@ -1,7 +1,9 @@
-.env
-
-assets/.*
+gmail-api-access/.env
 
 token.json
 
 .idea
+
+.*.txt
+
+__pycache__
