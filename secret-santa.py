@@ -4,12 +4,15 @@ from raffle import Contestant
 from raffle import raffleAssignments
 import logging
 from gmail_api import GmailAPIAccess
+import pathlib
 
+
+LOGFILE = './assets/log/resultado.log'
 TEMPLATE_FILE = "./assets/templates/modelo_email.html"
 FILE_PATH = "assets/participants/"
 PARTICIPANTS_FILE = "participants.txt"
-EMAIL_FROM = "amigoinvisiblesoft@gmail.com"
-SUBJECT = "Amigo Invisible 2022/2023"
+EMAIL_FROM = "amigoinvisiblesoft@correo.com"
+SUBJECT = "Amigo Invisible"
 WHOLE_NAME = "{} {}"
 
 def loadParticipants(fileName) -> {Contestant}:
@@ -44,7 +47,7 @@ def main (test_mode=True):
         logging.basicConfig(level=logging.DEBUG, format='%(asctime)s:%(levelname)s: %(message)s')
     else:
         logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s: %(message)s',
-                            filename='./assets/log/resultado.txt', filemode="w")
+                            filename=LOGFILE, filemode="w")
 
     logging.info("Cargando participantes")
     participants = loadParticipants(FILE_PATH + PARTICIPANTS_FILE)

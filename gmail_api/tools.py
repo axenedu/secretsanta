@@ -11,8 +11,12 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from email.message import EmailMessage
 
+import pathlib
+
+WORKING_DIR = pathlib.Path(__file__).parent.resolve()
+CREDENTIALS_PATH = WORKING_DIR.joinpath('.env/credentials.json')
+TOKEN_PATH = WORKING_DIR.joinpath('.env/token.json')
 
 
 class GmailAPIAccess:
@@ -28,22 +32,23 @@ class GmailAPIAccess:
         """
         Athentication and authorization against gmail
         """
+        print(WORKING_DIR)
         if not GmailAPIAccess.__CREDS or not GmailAPIAccess.__CREDS.valid:
             # The file token.json stores the user's access and refresh tokens, and is
             # created automatically when the authorization flow completes for the first
             # time.
-            if os.path.exists('.env/token.json'):
-                GmailAPIAccess.__CREDS = Credentials.from_authorized_user_file('.env/token.json', GmailAPIAccess.__SCOPES)
+            if os.path.exists(TOKEN_PATH):
+                GmailAPIAccess.__CREDS = Credentials.from_authorized_user_file(TOKEN_PATH, GmailAPIAccess.__SCOPES)
             # If there are no (valid) credentials available, let the user log in.
             if not GmailAPIAccess.__CREDS or not GmailAPIAccess.__CREDS.valid:
                 if GmailAPIAccess.__CREDS and GmailAPIAccess.__CREDS.expired and GmailAPIAccess.__CREDS.refresh_token:
                     GmailAPIAccess.__CREDS.refresh(Request())
                 else:
                     flow = InstalledAppFlow.from_client_secrets_file(
-                        '.env/credentials.json', GmailAPIAccess.__SCOPES)
+                        CREDENTIALS_PATH, GmailAPIAccess.__SCOPES)
                     GmailAPIAccess.__CREDS = flow.run_local_server(port=0)
             # Save the credentials for the next run
-            with open('.env/token.json', 'w') as token:
+            with open(TOKEN_PATH, 'w') as token:
                 token.write(GmailAPIAccess.__CREDS.to_json())
         return GmailAPIAccess.__CREDS
 
