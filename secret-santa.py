@@ -41,9 +41,10 @@ def printAssertions(participants: {Contestant}) -> None:
 def main (test_mode=True):
     # Establecemos nivel de login acorde a modo de ejecución
     if test_mode:
-        logging.basicConfig(level=logging.DEBUG)
+        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s:%(levelname)s: %(message)s')
     else:
-        logging.basicConfig(level=logging.INFO, filename='./assets/log/resultado.txt', filemode="w")
+        logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s: %(message)s',
+                            filename='./assets/log/resultado.txt', filemode="w")
 
     logging.info("Cargando participantes")
     participants = loadParticipants(FILE_PATH + PARTICIPANTS_FILE)
