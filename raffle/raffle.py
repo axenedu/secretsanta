@@ -1,5 +1,6 @@
 import logging
 import random
+from os import urandom
 
 
 class Contestant:
@@ -49,7 +50,7 @@ class NoCandidatesLeft(Exception):
 
 class RaffleExhausted(Exception):
     '''
-    The Raffle has been executed many times without success
+    The raffle has been executed many times without success
     :param Exception:
     :return:
     '''
@@ -63,10 +64,11 @@ def raffleAssignments(participants: {Contestant}) -> {Contestant, Contestant}:
     :return: Diccionario de parejas de amigos invisibles
     '''
     #creamos una variable resultado inicialmente vacía
-    resultado = {Contestant: Contestant}
+    resultado = {}
 
     ended = False
     raffle_round=0
+    # random.seed(urandom(15),version=2)
     while raffle_round <50 and not ended:
         try:
             backlog = participants.copy()

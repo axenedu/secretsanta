@@ -1,4 +1,4 @@
-gmail-api-access/.env
+gmail_api/.env
 
 token.json
 
@@ -7,3 +7,5 @@ token.json
 .*.txt
 
 __pycache__
+
+assets/log

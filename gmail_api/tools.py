@@ -2,6 +2,9 @@ from __future__ import print_function
 
 import base64
 import os.path
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 import google.auth
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -58,13 +61,16 @@ class GmailAPIAccess:
 
         try:
             service = build('gmail', 'v1', credentials=creds)
-            message = EmailMessage()
+            message = MIMEMultipart('alternative')
 
-            message.set_content(body)
+            html = MIMEText(body,'html')
+            message.attach(html)
 
             message['To'] = to
             message['From'] = from_recipient
             message['Subject'] = subject
+
+
 
             # encoded message
             encoded_message = base64.urlsafe_b64encode(message.as_bytes()) \
@@ -83,4 +89,6 @@ class GmailAPIAccess:
         return send_message
 
 if __name__ == '__main__':
-    GmailAPIAccess.gmail_send_message('axenedu@gmail.com','amigoinvisiblesoft@gmail.com','Test2','Hola Mundo')
+    template_body = open("../assets/templates/modelo_email.html","r").read()
+    template_fixed = template_body.replace("[nombre]", "axenedu").replace("[amigoInvisible]","RCP")
+    GmailAPIAccess.gmail_send_message('axenedu@gmail.com','amigoinvisiblesoft@gmail.com','Test2',template_fixed)
