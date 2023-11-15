@@ -15,7 +15,7 @@ from googleapiclient.errors import HttpError
 import pathlib
 
 WORKING_DIR = pathlib.Path(__file__).parent.resolve()
-CREDENTIALS_PATH = WORKING_DIR.joinpath('.env/credentials.json')
+CREDENTIALS_PATH = WORKING_DIR.joinpath('.env/cliente-escritorio.json')
 TOKEN_PATH = WORKING_DIR.joinpath('.env/token.json')
 
 
