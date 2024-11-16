@@ -11,7 +11,8 @@ TEMPLATE_FILE = "./assets/templates/modelo_email.html"
 FILE_PATH = "assets/participants/"
 PARTICIPANTS_FILE = "participants.txt"
 EMAIL_FROM = "amigoinvisiblesoft@correo.com"
-SUBJECT = "Amigo Invisible"
+NEWYEAR = 2025
+SUBJECT = "Amigo Invisible SM " + (str(NEWYEAR-1))
 
 def loadParticipants(fileName) -> {Contestant}:
     participants = set()
@@ -48,7 +49,7 @@ def main (test_mode=True):
 
     logging.info("Cargando participantes")
     participants = loadParticipants(FILE_PATH + PARTICIPANTS_FILE)
-    #I mpresion de restricciones
+    #Impresion de restricciones
     printAssertions(participants)
 
     logging.info("Realizando Sorteo")
@@ -65,7 +66,9 @@ def main (test_mode=True):
         email_to = participant.email
         email_body = template_body\
             .replace("[nombre]", participant_name)\
-            .replace("[amigoInvisible]",friend_name)
+            .replace("[amigoInvisible]",friend_name)\
+            .replace("[lastyear]",str(NEWYEAR-1))\
+            .replace("[newyear]",str(NEWYEAR))
         logging.debug(f"email_to:{email_to},email_from:{EMAIL_FROM},subject:{SUBJECT}")
         # Envía correo sólo si no es una prueba
         if not test_mode: GmailAPIAccess.gmail_send_message(email_to,EMAIL_FROM,SUBJECT,email_body)
@@ -73,6 +76,7 @@ def main (test_mode=True):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print("Inicio del Sorteo")
+    print(SUBJECT)
     main()
     print("Sorteo finalizado")
 

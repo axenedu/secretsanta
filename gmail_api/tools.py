@@ -94,6 +94,14 @@ class GmailAPIAccess:
         return send_message
 
 if __name__ == '__main__':
+    ''' Load pre-authorized user credentials from the environment.
+    TODO(developer) - See https://developers.google.com/identity
+    for guides on implementing OAuth2 for the application.
+    First time you mas get a token, delete token.json
+    '''
     template_body = open("../assets/templates/modelo_email.html","r").read()
-    template_fixed = template_body.replace("[nombre]", "axenedu").replace("[amigoInvisible]","RCP")
+    template_fixed = (template_body.replace("[nombre]", "axenedu")
+                      .replace("[amigoInvisible]","RCP")
+                      .replace("[lastyear]", "2024")
+                      .replace("[newyear]", "2025"))
     GmailAPIAccess.gmail_send_message('axenedu@gmail.com','amigoinvisiblesoft@gmail.com','Test2',template_fixed)
