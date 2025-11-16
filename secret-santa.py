@@ -9,9 +9,9 @@ import pathlib
 LOGFILE = './assets/log/resultado.log'
 TEMPLATE_FILE = "./assets/templates/modelo_email.html"
 FILE_PATH = "assets/participants/"
-PARTICIPANTS_FILE = "participants.txt"
-EMAIL_FROM = "amigoinvisiblesoft@correo.com"
-NEWYEAR = 2025
+PARTICIPANTS_FILE = ".participants-serrano.txt"
+EMAIL_FROM = "amigoinvisiblesoft@gmail.com"
+NEWYEAR = 2026
 SUBJECT = "Amigo Invisible SM " + (str(NEWYEAR-1))
 
 def loadParticipants(fileName) -> {Contestant}:
@@ -77,7 +77,7 @@ def main (test_mode=True):
 if __name__ == '__main__':
     print("Inicio del Sorteo")
     print(SUBJECT)
-    main()
+    main(test_mode=True)
     print("Sorteo finalizado")
 
 

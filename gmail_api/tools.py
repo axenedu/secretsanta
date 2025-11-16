@@ -102,6 +102,6 @@ if __name__ == '__main__':
     template_body = open("../assets/templates/modelo_email.html","r").read()
     template_fixed = (template_body.replace("[nombre]", "axenedu")
                       .replace("[amigoInvisible]","RCP")
-                      .replace("[lastyear]", "2024")
-                      .replace("[newyear]", "2025"))
+                      .replace("[lastyear]", "2025")
+                      .replace("[newyear]", "2026"))
     GmailAPIAccess.gmail_send_message('axenedu@gmail.com','amigoinvisiblesoft@gmail.com','Test2',template_fixed)
